@@ -1,0 +1,121 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --bg: #f7f8fc;
+  --surface: #ffffff;
+  --ink: #18243b;
+  --subtle: #718098;
+  --soft: #f3f5fa;
+  --line: #e7eaf1;
+  --brand: #4f46e5;
+  --brand-ink: #ffffff;
+  color-scheme: light;
+}
+.dark {
+  --bg: #0b1220;
+  --surface: #111b2d;
+  --ink: #edf1f8;
+  --subtle: #9aa8bd;
+  --soft: #172338;
+  --line: #25334b;
+  --brand: #818cf8;
+  --brand-ink: #ffffff;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-subtle: var(--subtle);
+  --color-soft: var(--soft);
+  --color-line: var(--line);
+  --color-brand: var(--brand);
+  --color-brand-ink: var(--brand-ink);
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+html, body, #root { min-height: 100%; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+button, a, input, select, textarea { -webkit-tap-highlight-color: transparent; }
+::selection { background: rgb(99 102 241 / 22%); }
+
+.app-shell {
+  background:
+    radial-gradient(ellipse at 92% 0%, rgb(79 70 229 / 5%), transparent 32rem),
+    var(--bg);
+}
+
+.sidebar-brand {
+  background: linear-gradient(145deg, #4f46e5, #2563eb);
+  box-shadow: 0 8px 18px rgb(79 70 229 / 24%);
+}
+
+.sidebar-panel {
+  background: linear-gradient(180deg, #111d31 0%, #0d1728 100%);
+  color: #e8edf6;
+  border-color: rgb(255 255 255 / 8%);
+}
+
+@media (min-width: 1024px) {
+  .app-sidebar {
+    box-sizing: border-box;
+    flex: 0 0 13rem;
+    width: 13rem;
+    transition: flex-basis 200ms ease, width 200ms ease, transform 200ms ease;
+  }
+
+  .app-sidebar.is-collapsed {
+    flex-basis: 4rem;
+    width: 4rem;
+  }
+}
+
+.sidebar-panel .sidebar-muted {
+  color: #9aa9bf;
+}
+
+.sidebar-link-active {
+  background: linear-gradient(100deg, #4f46e5, #2563eb);
+  color: white;
+  box-shadow: 0 8px 18px rgb(79 70 229 / 24%);
+}
+
+.sidebar-link-idle {
+  color: #bdc8d8;
+}
+
+.sidebar-link-idle:hover {
+  background: rgb(255 255 255 / 7%);
+  color: white;
+}
+
+.dashboard-hero {
+  background:
+    radial-gradient(ellipse at 84% 46%, rgb(99 102 241 / 12%), transparent 22rem),
+    linear-gradient(115deg, #fff 4%, #f8f9ff 54%, #edf2ff 100%);
+}
+
+.dark .dashboard-hero {
+  background:
+    radial-gradient(ellipse at 84% 46%, rgb(99 102 241 / 16%), transparent 22rem),
+    linear-gradient(115deg, #111b2d 4%, #151b30 54%, #171a34 100%);
+}
+
+.page-enter { animation: page-enter 220ms ease-out both; }
+@keyframes page-enter {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}
